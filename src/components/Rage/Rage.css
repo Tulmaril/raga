@@ -1,0 +1,8 @@
+.Rage {
+    text-align: center;
+    padding: 10px;
+}
+.Rage__text {
+    text-transform: uppercase;
+    font-weight: bold;
+}

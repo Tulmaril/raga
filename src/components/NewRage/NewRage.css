@@ -1,0 +1,46 @@
+.NewRage {
+    border: 1px solid balck;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
+}
+textarea {
+    resize: none;
+    height: 120px;
+    margin-bottom: 15px;
+}
+
+label {
+    padding: 10px;
+    font-weight: 700;
+}
+
+button {
+    outline: none;
+    background: #fff;
+    border: 2px solid #e30000;
+    width: 220px;
+    height: 50px;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 20px;
+    cursor: pointer;
+    color: #e30000
+}
+
+h1 {
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e30000;
+    color: #fff
+}
+
+button:active {
+    background: #fff;
+    color: #e30000
+}
