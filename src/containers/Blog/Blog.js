@@ -2,14 +2,53 @@ import React, { Component } from 'react';
 
 import NewRage from '../../components/NewRage/NewRage';
 import Rage from '../../components/Rage/Rage';
-import './Blog.css';
+import classes from './Blog.css';
+import DatePicker from "react-datepicker";
+ 
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 class Blog extends Component {
     state = {
         rages: JSON.parse(localStorage.getItem('ragesAppRages')) || [],
         selectedPostId: null,
-        error: false
+        error: false,
+        startDate: new Date()
     }
+
+    groupByDay = (array) => {
+        const days = {};
+        array.forEach(v => {
+            const [date] = v.date.split(' ');
+            if (!days[date]) {
+                days[date] = [];
+            }
+            days[date].push(v);
+        });
+        return Object.values(days);
+    }
+
+    dayRage = () => {
+        let asd = this.groupByDay(this.state.rages);
+        let dayRage = [];
+        asd.forEach((v, index) => {
+            let dayz = {};
+            let zxc = v.reduce((a, b) => {
+                return a + b['level'];
+            }, 0);
+            let dater = v[0].date.split(' ')[0];
+            dayz[dater] = (zxc/v.length).toFixed();
+            dayRage.push(dayz);
+        });
+
+        console.log(dayRage);
+        return dayRage
+    }
+
+    handleChange = date => {
+        this.setState({
+          startDate: date
+        });
+      };
 
     postSelectedHandler = (id) => {
         this.setState({selectedPostId: id});
@@ -43,11 +82,28 @@ class Blog extends Component {
 
         return (
             <div>
+                <DatePicker
+                    selected={this.state.startDate}
+                    onChange={this.handleChange}
+                    dayClassName={date => {
+                        date = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
+
+                        let dayClass = '';
+                        this.dayRage().forEach(v => {
+                            if (v.hasOwnProperty(date)) {
+                                dayClass = 'has-rage-' + v[date]
+                            }
+                        });
+
+                        return classes[dayClass]
+                    }}
+                />
+                <button className='Asdasdasd' onClick={this.dayRage}>qweqweqwe</button>
                 <section>
                     <NewRage
                         addRage={this.addRageHandler} />
                 </section>
-                <section className="Rages">
+                <section className={classes.Rage}>
                     {rages}
                 </section>
             </div>

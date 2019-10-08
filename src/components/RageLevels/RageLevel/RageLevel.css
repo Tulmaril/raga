@@ -4,4 +4,20 @@
     border: 2px solid black;
     object-fit: cover;
     cursor: pointer;
+    animation: none;
+}
+.Animation {
+    animation: scale .4s infinite;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

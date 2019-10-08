@@ -13,10 +13,11 @@ class RageLevels extends Component {
 
         return (
             <div className={classes.RageLevels}>
-                {this.state.levels.map((level, index) => (
+                {this.state.levels.map((level) => (
                     <RageLevel 
                         key={level}
                         id={level}
+                        choosing={true}
                         selected={() => this.props.rageLevelSelected(level)}
                          />
                 ))}

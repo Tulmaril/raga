@@ -28,7 +28,7 @@ button {
     font-weight: 900;
     font-size: 20px;
     cursor: pointer;
-    color: #e30000
+    color: #e30000;
 }
 
 h1 {
@@ -44,3 +44,4 @@ button:active {
     background: #fff;
     color: #e30000
 }
+

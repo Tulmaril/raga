@@ -1,3 +1,33 @@
 .Rages {
     text-align: center;
 }
+.has-rage-1 {
+    background: url(../../assets/images/0.png) no-repeat center center;
+    background-size: contain;
+    color: #fff!important;
+}
+.has-rage-2 {
+    background: url(../../assets/images/1.png) no-repeat center center;
+    background-size: contain;
+    color: #fff!important;
+}
+.has-rage-3 {
+    background: url(../../assets/images/2.png) no-repeat center center;
+    background-size: contain;
+    color: #fff!important;
+}
+.has-rage-4 {
+    background: url(../../assets/images/3.jpg) no-repeat center center;
+    background-size: contain;
+    color: #fff!important;
+}
+.has-rage-5 {
+    background: url(../../assets/images/4.png) no-repeat center center;
+    background-size: contain;
+    color: #fff!important;
+}
+.has-rage-6 {
+    background: url(../../assets/images/5.jpg) no-repeat center center;
+    background-size: contain;
+    color: #fff!important;
+}
