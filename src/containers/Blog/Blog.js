@@ -14,6 +14,23 @@ class Blog extends Component {
         error: false,
         selectedDate: null
     }
+    
+    addRageToLocalStorageTest = () => {
+        const rages = [
+            {"id":0,"level":0,"text":"wfwef","date":"10/03/2019 23:56:3","visible":true},
+            {"id":1,"level":2,"text":"wefwef","date":"10/03/2019 23:56:6","visible":true},
+            {"id":2,"level":0,"text":"afeawef","date":"10/07/2019 13:16:7","visible":true},
+            {"id":3,"level":0,"text":"awefawef","date":"10/07/2019 13:16:9","visible":true},
+            {"id":4,"level":3,"text":"awefawef","date":"10/07/2019 13:16:12","visible":true},
+            {"id":5,"level":5,"text":"q2ff q23r","date":"10/08/2019 3:17:7","visible":true},
+            {"id":6,"level":4,"text":"q23r q23r 2q3r2q3","date":"10/08/2019 3:17:9","visible":true},
+            {"id":7,"level":2,"text":"qqqqqqqqqqq","date":"10/09/2019 2:12:31","visible":true},
+            {"id":8,"level":4,"text":"wwefwef","date":"10/09/2019 2:20:13","visible":true},
+            {"id":9,"level":5,"text":"awef awefwaef ","date":"10/09/2019 2:40:41","visible":true},
+            {"id":10,"level":0,"text":"ыупк","date":"10/09/2019 16:28:28","visible":true}
+        ];
+        localStorage.setItem("ragesAppRages", JSON.stringify(rages));
+    }
 
     formatDate = (date) => {
         return ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
@@ -103,6 +120,7 @@ class Blog extends Component {
 
         return (
             <div>
+                <button onClick={this.addRageToLocalStorageTest}>Add test items</button>
                 <section>
                     <NewRage
                         addRage={this.addRageHandler} />
