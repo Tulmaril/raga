@@ -43,14 +43,14 @@ class NewRage extends Component {
                 />                
                 <label>Text your Rage</label>
                 <textarea value={this.state.text} onChange={(event) => this.setState({text: event.target.value})}></textarea>
-                <button onClick={this.addRageHandler}>rrrage</button>
+                <button  className={classes.Button} onClick={this.addRageHandler}>rrrage</button>
                 </>
             )
         }
 
         return (
             <div className={classes.NewRage}>
-                <h1 onClick={this.toggleNewRage}>Add a Rage</h1>
+                <button className={classes.Button} onClick={this.toggleNewRage}>Add a Rage</button>
 
                 {rageBody}
             </div>

@@ -12,7 +12,11 @@ class Blog extends Component {
         rages: JSON.parse(localStorage.getItem('ragesAppRages')) || [],
         selectedPostId: null,
         error: false,
-        startDate: new Date()
+        selectedDate: null
+    }
+
+    formatDate = (date) => {
+        return ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
     }
 
     groupByDay = (array) => {
@@ -28,9 +32,9 @@ class Blog extends Component {
     }
 
     dayRage = () => {
-        let asd = this.groupByDay(this.state.rages);
+        let groupedRages = this.groupByDay(this.state.rages);
         let dayRage = [];
-        asd.forEach((v, index) => {
+        groupedRages.forEach((v, index) => {
             let dayz = {};
             let zxc = v.reduce((a, b) => {
                 return a + b['level'];
@@ -39,16 +43,14 @@ class Blog extends Component {
             dayz[dater] = (zxc/v.length).toFixed();
             dayRage.push(dayz);
         });
-
-        console.log(dayRage);
         return dayRage
     }
 
     handleChange = date => {
         this.setState({
-          startDate: date
-        });
-      };
+            selectedDate: date
+        });       
+    };
 
     postSelectedHandler = (id) => {
         this.setState({selectedPostId: id});
@@ -71,22 +73,45 @@ class Blog extends Component {
     }
 
     render () {
+        let  rages = null;
 
-        const rages = this.state.rages.map(rage => {
-            return <Rage 
-                key={rage.id} 
-                level={rage.level} 
-                text={rage.text} 
-                date={rage.date} />;
-        }).reverse();
+        if (this.state.selectedDate !== null) {
+            rages = this.state.rages
+                .filter(rage => {
+                    return this.formatDate(this.state.selectedDate) === rage.date.split(' ')[0];
+                })
+                .map(rage => {
+                    return <Rage 
+                        key={rage.id} 
+                        level={rage.level} 
+                        text={rage.text} 
+                        date={rage.date} />;
+                }).reverse();
+
+            if (rages.length === 0) {
+                rages = (<div style={{textAlign: "center", marginTop: '20px'}}>There are no rages {this.formatDate(this.state.selectedDate)}!</div>)
+            }
+        } else {
+            rages = this.state.rages.map(rage => {
+                return <Rage 
+                    key={rage.id} 
+                    level={rage.level} 
+                    text={rage.text} 
+                    date={rage.date} />;
+            }).reverse();
+        }
 
         return (
             <div>
-                <DatePicker
-                    selected={this.state.startDate}
+                <section>
+                    <NewRage
+                        addRage={this.addRageHandler} />
+                    <DatePicker
+                    selected={this.state.selectedDate}
                     onChange={this.handleChange}
+                    isClearable
                     dayClassName={date => {
-                        date = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
+                        date = this.formatDate(date);
 
                         let dayClass = '';
                         this.dayRage().forEach(v => {
@@ -98,10 +123,6 @@ class Blog extends Component {
                         return classes[dayClass]
                     }}
                 />
-                <button className='Asdasdasd' onClick={this.dayRage}>qweqweqwe</button>
-                <section>
-                    <NewRage
-                        addRage={this.addRageHandler} />
                 </section>
                 <section className={classes.Rage}>
                     {rages}

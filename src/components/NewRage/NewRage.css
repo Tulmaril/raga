@@ -5,6 +5,7 @@
     flex-direction: column;
     width: 500px;
     margin: 0 auto;
+    margin-top: 20px;
 }
 textarea {
     resize: none;
@@ -17,7 +18,7 @@ label {
     font-weight: 700;
 }
 
-button {
+.Button {
     outline: none;
     background: #fff;
     border: 2px solid #e30000;
@@ -29,18 +30,19 @@ button {
     font-size: 20px;
     cursor: pointer;
     color: #e30000;
+    margin-bottom: 20px;
 }
 
 h1 {
     cursor: pointer;
 }
 
-button:hover {
+.Button:hover {
     background: #e30000;
     color: #fff
 }
 
-button:active {
+.Button:active {
     background: #fff;
     color: #e30000
 }
